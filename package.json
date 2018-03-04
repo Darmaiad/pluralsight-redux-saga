@@ -66,7 +66,6 @@
     "react-redux",
     "redux-saga",
     "immutablejs",
-    "server-side-rendering",
     "reselect",
     "es6",
     "reactjs",
@@ -76,6 +75,6 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Darmaiad/pluralsight-advanced-redux.git"
+    "url": "https://github.com/Darmaiad/pluralsight-redux-saga.git"
   }
 }
