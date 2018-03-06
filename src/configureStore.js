@@ -7,29 +7,29 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers';
 
 const configureStore = () => {
-// Transform logged to work with immutable.js data structures
-const logger = createLogger({
-   stateTransformer: (state) => state.toJS(),
-});
+    // Transform logged to work with immutable.js data structures
+    const logger = createLogger({
+        stateTransformer: (state) => state.toJS(),
+    });
 
-const middlewares = [];
-middlewares.push(thunk);
-// Run if environment is DEV:
-middlewares.push(logger);
-middlewares.push(reduxImmutableStateInvariant());
+    const middlewares = [];
+    middlewares.push(thunk);
 
-console.log(process.env.NODE_ENV);
+    if (process.env.NODE_ENV === 'development') {
+        middlewares.push(logger);
+        middlewares.push(reduxImmutableStateInvariant());
+    }
 
-const enhancer = compose(
-   applyMiddleware(...middlewares)
-);
+    const enhancer = compose(
+        applyMiddleware(...middlewares)
+    );
 
-const store = createStore(
-    rootReducer,
-    enhancer
-);
+    const store = createStore(
+        rootReducer,
+        enhancer
+    );
 
-return store;
+    return store;
 };
 
 // Exporting configureStore and not the store itself because if we later write

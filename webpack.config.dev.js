@@ -1,6 +1,10 @@
 import webpack from 'webpack';
 import path from 'path';
 
+const GLOBALS = {
+    'process.env.NODE_ENV': JSON.stringify('development'),
+};
+
 export default {
     debug: true,
     devServer: {
@@ -43,6 +47,7 @@ export default {
     },
     noInfo: false,
     plugins: [
+        new webpack.DefinePlugin(GLOBALS),
         new webpack.HotModuleReplacementPlugin(),
     ],
     stats: {
