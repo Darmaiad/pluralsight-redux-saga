@@ -1,23 +1,22 @@
 import { applyMiddleware, compose, createStore } from 'redux';
-import { createLogger } from 'redux-logger';
-import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
+// Using require because we ignore them with webpack
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from './reducers';
 
 const configureStore = () => {
-    // Transform logged to work with immutable.js data structures
-    const logger = createLogger({
-        stateTransformer: (state) => state.toJS(),
-    });
-
     const middlewares = [];
     middlewares.push(thunk);
 
     if (process.env.NODE_ENV === 'development') {
+        const createLogger = require('redux-logger').createLogger;
+        // Transform logged to work with immutable.js data structures
+        const logger = createLogger({
+            stateTransformer: (state) => state.toJS(),
+        });
         middlewares.push(logger);
-        middlewares.push(reduxImmutableStateInvariant());
+        middlewares.push(require('redux-immutable-state-invariant').default());
     }
 
     const enhancer = compose(

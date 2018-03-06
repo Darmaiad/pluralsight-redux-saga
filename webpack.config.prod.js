@@ -24,6 +24,7 @@ export default {
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.DefinePlugin(GLOBALS),
+        new webpack.IgnorePlugin(/redux-immutable-state-invariant|redux-logger/),
         new ExtractTextPlugin('styles.css'),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin(),
