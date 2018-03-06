@@ -1,5 +1,4 @@
 import { applyMiddleware, compose, createStore } from 'redux';
-// Using require because we ignore them with webpack
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 
@@ -8,8 +7,9 @@ import rootReducer from './reducers';
 const configureStore = () => {
     const middlewares = [];
     middlewares.push(thunk);
-
+    
     if (process.env.NODE_ENV === 'development') {
+        // Using require because we ignore them with webpack
         const createLogger = require('redux-logger').createLogger;
         // Transform logged to work with immutable.js data structures
         const logger = createLogger({
