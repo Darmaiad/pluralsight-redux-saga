@@ -18,6 +18,8 @@ middlewares.push(thunk);
 middlewares.push(logger);
 middlewares.push(reduxImmutableStateInvariant());
 
+console.log(process.env.NODE_ENV);
+
 const enhancer = compose(
    applyMiddleware(...middlewares)
 );
