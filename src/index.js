@@ -5,6 +5,8 @@ import { render } from 'react-dom';
 import configureStore from './configureStore';
 import Root from './components/Root';
 
+import css from './../public/css/styles.css';
+
 const store = configureStore();
 
 render(
