@@ -5,7 +5,8 @@ import { render } from 'react-dom';
 import configureStore from './configureStore';
 import Root from './components/Root';
 
-import css from './../public/css/styles.css';
+import './../public/css/styles.css';
+import './../public/favicon.ico';
 
 const store = configureStore();
 

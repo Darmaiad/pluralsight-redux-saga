@@ -32,8 +32,12 @@ export default {
                 exclude: /node_modules/,
                 loader: "eslint-loader",
             },
-            { 
+            {
                 test: /(\.css)$/, loaders: ['style', 'css'],
+            },
+            {
+                test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+                loader: 'file-loader?name=[name].[ext]', // <-- retain original file name
             },
         ],
     },
