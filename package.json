@@ -79,9 +79,11 @@
     "react",
     "redux",
     "react-redux",
+    "nodejs",
     "redux-saga",
     "immutablejs",
     "reselect",
+    "express",
     "es6",
     "reactjs",
     "javascript"
