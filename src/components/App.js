@@ -1,12 +1,16 @@
 import React from 'react';
-import First from './First';
+
+import { MainContainer } from '../components';
+import { getCurrentUserInfo } from '../actions';
 
 const App = () => {
   return (
     <div>
-      <First />
+      <MainContainer />
     </div>
   );
 };
 
 export default App;
+
+store.dispatch(getCurrentUserInfo(`U10000`));

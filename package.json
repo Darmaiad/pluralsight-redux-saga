@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Re-implementation of the project developed in the Pluralsight course: \"Redux Saga\" by Daniel Stern.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "babel-node server/devServer.js",
     "dev": "nodemon --watch server/**/* --exec babel-node --inspect server/devServer.js",
     "clean-dist": "npm run remove-dist && mkdir dist",
@@ -83,7 +83,8 @@
     "redux-saga",
     "immutablejs",
     "reselect",
-    "express",
+    "babel",
+    "webpack",
     "es6",
     "reactjs",
     "javascript"

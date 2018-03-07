@@ -1,6 +1,7 @@
 {
   "extends": [
-    "google"
+    "google",
+    "plugin:import/errors"
   ],
   "plugins": [
     "react",

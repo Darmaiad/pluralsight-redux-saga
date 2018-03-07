@@ -1,14 +1,13 @@
-import { combineReducers } from 'redux';
-
-const aReducer = (state = {}, action) => {
-    if (action.response) {
-        return {
-            ...state,
-        };
-    }
-    return state;
-};
-
-const rootReducer = combineReducers({ aReducer });
-
-export default rootReducer;
+export { version } from './version';
+export { currentUser } from './currentUser';
+export { cartItems } from './cartItems';
+export { items } from './items';
+export { itemPrices } from './itemPrices';
+export { itemQuantityFetchStatus } from './itemQuantityFetchStatus';
+export { shippingCost } from './shippingCost';
+export { shippingFetchStatus } from './shippingFetchStatus';
+export { taxRate } from './taxRate';
+export { isCheckingOut } from './isCheckingOut';
+export { canCheckOut } from './canCheckOut';
+export { customerServiceAvailability } from './customerServiceAvailability';
+export { checkoutPhase } from './checkoutPhase';
