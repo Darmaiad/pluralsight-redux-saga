@@ -2,6 +2,8 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { Iterable } from 'immutable';
 import { getQuery } from './utility';
+
+import { reducer } from './combineReducers';
 import { defaultState } from './defaultState';
 
 import createSagaMiddleware from 'redux-saga';
@@ -33,7 +35,7 @@ const configureStore = () => {
     );
 
     const store = createStore(
-        rootReducer,
+        reducer,
         defaultState,
         enhancer
     );
