@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
     CREDIT_VALIDATION_CHECKOUT_PHASE,
     QUANTITY_VERIFICATION_CHECKOUT_PHASE,
@@ -6,6 +8,7 @@ import {
     PURCHASE_FINALIZATION_CHECKOUT_PHASE,
     SUCCESS_CHECKOUT_PHASE,
 } from '../../actions';
+
 export const CheckoutStatusViewDisplay = ({ phase }) => (
     <div className="text-center">
         <h1>

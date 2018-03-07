@@ -3,4 +3,3 @@ export const connect = () => {
     const socket = io();
     return socket;
 };
-

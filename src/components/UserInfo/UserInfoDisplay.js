@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 export const UserInfoDisplay = ({ name, address1, country, phone, fetched }) => (
     <div>
         <section className="current-user">
@@ -10,10 +12,11 @@ export const UserInfoDisplay = ({ name, address1, country, phone, fetched }) => 
                     <br />
                     {phone}
                 </p>
-                : <div>
+                :
+                <div>
                     <p>
                         Please wait while we fetch your user info.
-                </p>
+                    </p>
                 </div>}
         </section>
     </div>

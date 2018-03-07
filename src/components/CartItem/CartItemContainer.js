@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
+
 import { CartItemDisplay } from './CartItemDisplay';
-
 import { increaseItemQuantity, decreaseItemQuantity } from './../../actions';
-
 import { itemsDetailSelector, itemPriceSelector, itemQuantityFetchStatusSelector } from './../../selectors';
 
 const mapStateToProps = (state, { id }) => {

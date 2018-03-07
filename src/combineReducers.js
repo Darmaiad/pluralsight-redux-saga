@@ -1,11 +1,12 @@
-import * as reducers from './reducers';
 import { fromJS } from 'immutable';
+
+import * as reducers from './reducers';
 
 export const combineReducers = (config) => {
     const defaultState = fromJS(Object.keys(config).reduce((a, key) => {
         a[key] = config[key](undefined, []); return a;
     }, {}));
-    
+
     return (state = defaultState, action) => {
         return Object.keys(config).reduce((state, key) => {
             const reducer = config[key];
@@ -18,6 +19,5 @@ export const combineReducers = (config) => {
         }, state);
     };
 };
-
 
 export const reducer = combineReducers(reducers);

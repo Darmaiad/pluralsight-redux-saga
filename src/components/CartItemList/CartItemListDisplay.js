@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { CartItemContainer } from '../CartItem';
+
 export const CartItemListDisplay = ({ items, fetched }) => (
     <div>
         {fetched ? <div>

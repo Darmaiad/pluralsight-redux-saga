@@ -1,4 +1,5 @@
 import React from 'react';
+
 export const SupportAvailableDisplay = ({ isAvailable }) => (
     <div className="customer-service-message">
         {isAvailable ? <div>

@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+
 export const itemPricesSelector = createSelector(
     (state) => state.get(`itemPrices`),
     (itemPrices) => itemPrices

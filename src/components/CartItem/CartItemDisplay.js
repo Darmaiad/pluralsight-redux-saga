@@ -1,7 +1,8 @@
 import React from 'react';
-import {
-    FETCHED,
-} from '../../actions';
+import PropTypes from 'prop-types';
+
+import { FETCHED } from './../../actions';
+
 export const CartItemDisplay = ({ fetched, name, description, price, id, quantity, increaseItemQuantity, decreaseItemQuantity, quantityFetchStatus }) => (
     <div>
         {fetched ?

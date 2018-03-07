@@ -1,13 +1,7 @@
-import { createReducer } from './../utility';
-import {
-    SET_CART_ITEMS,
-    INCREASE_ITEM_QUANTITY,
-    DECREASE_ITEM_QUANTITY,
-} from '../actions';
+import { fromJS } from 'immutable';
 
-import {
-    fromJS,
-} from 'immutable';
+import { createReducer } from './../utility';
+import { SET_CART_ITEMS, INCREASE_ITEM_QUANTITY, DECREASE_ITEM_QUANTITY } from '../actions';
 
 export const cartItems = createReducer(null, {
     [SET_CART_ITEMS](state, { items }) {

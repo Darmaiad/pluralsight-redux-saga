@@ -1,12 +1,7 @@
 import { connect } from 'react-redux';
-import {
-    OrderSummaryDisplay,
-} from './OrderSummaryDisplay';
 
-import {
-    FETCHED,
-} from './../../actions';
-
+import { OrderSummaryDisplay } from './OrderSummaryDisplay';
+import { FETCHED } from './../../actions';
 import {
     cartItemsSelector,
     itemPriceSelector,

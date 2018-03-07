@@ -1,11 +1,7 @@
 import { connect } from 'react-redux';
-import {
-    UserInfoDisplay,
-} from './UserInfoDisplay';
 
-import {
-    currentUserSelector,
-} from './../../selectors';
+import { UserInfoDisplay } from './UserInfoDisplay';
+import { currentUserSelector } from './../../selectors';
 
 const mapStateToProps = (state) => {
     const user = currentUserSelector(state);
