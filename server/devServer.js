@@ -42,7 +42,7 @@ io.on('connection', (connection) => {
   let supportAvailable = false;
   setInterval(() => {
     supportAvailable = !supportAvailable;
-    connection.emit(supportAvailable ? `SUPPORT_AVAILABLE` : `SUPPORT_NOT_AVAILABLE`);
+    connection.emit(supportAvailable ? 'SUPPORT_AVAILABLE' : 'SUPPORT_NOT_AVAILABLE');
   }, 10000);
 });
 

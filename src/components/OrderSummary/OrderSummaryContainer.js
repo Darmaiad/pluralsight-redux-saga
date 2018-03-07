@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
         subtotalFetched = false;
     } else {
         subtotal = items.reduce((total, item) => {
-            const id = item.get(`id`);
+            const id = item.get('id');
             const quantity = item.get('quantity');
             const price = itemPriceSelector(id)(state);
             if (!price) {

@@ -11,7 +11,7 @@ import './../public/favicon.ico';
 const store = configureStore();
 
 import { getCurrentUserInfo } from './actions';
-store.dispatch(getCurrentUserInfo(`U10000`));
+store.dispatch(getCurrentUserInfo('U10000'));
 
 render(
   <Root store={store} />,

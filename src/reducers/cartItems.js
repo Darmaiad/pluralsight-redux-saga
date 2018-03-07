@@ -8,14 +8,14 @@ export const cartItems = createReducer(null, {
         return fromJS(items);
     },
     [INCREASE_ITEM_QUANTITY](state, { id }) {
-        const index = state.findIndex((a) => a.get(`id`) === id);
+        const index = state.findIndex((a) => a.get('id') === id);
         return state.update(index, (b) => b.update('quantity', (q) => q + 1));
     },
     [DECREASE_ITEM_QUANTITY](state, { id }) {
-        const index = state.findIndex((a) => a.get(`id`) === id);
+        const index = state.findIndex((a) => a.get('id') === id);
         const value = state.get(index).get('quantity');
         if (value === 1) {
-            return state.filter((a) => a.get(`id`) !== id);
+            return state.filter((a) => a.get('id') !== id);
         }
         return state.update(index, (b) => b.update('quantity', (q) => q - 1));
     },
