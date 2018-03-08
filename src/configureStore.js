@@ -6,6 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 import { getQuery } from './utility';
 import { reducer } from './combineReducers';
 import { defaultState } from './defaultState';
+import { initSagas } from './initSagas';
 
 const configureStore = () => {
     const sagaMiddleware = createSagaMiddleware();
@@ -41,7 +42,9 @@ const configureStore = () => {
         defaultState,
         enhancer
     );
-    
+
+    initSagas(sagaMiddleware); // Sagas can be initialized after middleware has been placed inside a store
+
     return store;
 };
 
