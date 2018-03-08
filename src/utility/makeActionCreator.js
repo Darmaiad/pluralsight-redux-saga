@@ -1,9 +1,8 @@
-export const makeActionCreator = (type, ...argNames) => {
-    return (...args) => {
-        let action = { type };
-        argNames.forEach((arg, index) => {
-            action[argNames[index]] = args[index];
-        });
-        return action;
-    };
+// TODO: Use map to make it more terse
+export const makeActionCreator = (type, ...actionPropertiesNames) => (...actionPropertiesValues) => {
+    let action = { type };
+    actionPropertiesNames.forEach((arg, index) => {
+        action[actionPropertiesNames[index]] = actionPropertiesValues[index];
+    });
+    return action;
 };

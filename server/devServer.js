@@ -8,15 +8,12 @@ import webpackHotMiddleware from "webpack-hot-middleware";
 import socketIO from 'socket.io';
 import path from 'path';
 import open from 'open';
-// import webpackConfig from './../webpack.config'
 
 /* eslint-disable no-console */
 
 const port = process.env.PORT || 9000;
 const app = express();
 const compiler = webpack(config);
-
-console.log(compiler);
 
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
