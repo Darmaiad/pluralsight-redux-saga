@@ -1,17 +1,19 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { Iterable } from 'immutable';
-import { getQuery } from './utility';
+import createSagaMiddleware from 'redux-saga';
 
+import { getQuery } from './utility';
 import { reducer } from './combineReducers';
 import { defaultState } from './defaultState';
 
-import createSagaMiddleware from 'redux-saga';
-
 const configureStore = () => {
+    const sagaMiddleware = createSagaMiddleware();
+
     const middlewares = [];
     middlewares.push(thunk);
-    
+    middlewares.push(sagaMiddleware);
+
     if (process.env.NODE_ENV === 'development') {
         const stateTransformer = (state) => {
             if (Iterable.isIterable(state)) return state.toJS();
@@ -39,7 +41,7 @@ const configureStore = () => {
         defaultState,
         enhancer
     );
-
+    
     return store;
 };
 
