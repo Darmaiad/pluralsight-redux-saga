@@ -21,3 +21,11 @@ export const UserInfoDisplay = ({ name, address1, country, phone, fetched }) => 
         </section>
     </div>
 );
+
+UserInfoDisplay.propTypes = {
+    name: PropTypes.string,
+    address1: PropTypes.string,
+    country: PropTypes.string,
+    phone: PropTypes.string,
+    fetched: PropTypes.bool,
+};
