@@ -26,6 +26,6 @@ UserInfoDisplay.propTypes = {
     name: PropTypes.string,
     address1: PropTypes.string,
     country: PropTypes.string,
-    phone: PropTypes.string,
+    phone: PropTypes.number,
     fetched: PropTypes.bool,
 };
