@@ -26,10 +26,6 @@ export default {
                 exclude: [
                     /(node_modules)/,
                 ],
-                query: {
-                    presets: ['env', 'react'],
-                    plugins: ['transform-object-rest-spread'],
-                },
             },
             { // When there is a linting error webpack will not load the page
                 test: /\.js$/,
