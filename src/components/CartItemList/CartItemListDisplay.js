@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { CartItemContainer } from '../CartItem';
 
@@ -18,7 +19,12 @@ export const CartItemListDisplay = ({ items, fetched }) => (
 );
 
 CartItemListDisplay.propTypes = {
-    items: PropTypes.object,
+    items: ImmutablePropTypes.listOf(
+        ImmutablePropTypes.contains({
+            id: PropTypes.string,
+            quantity: PropTypes.number,
+        })
+    ),
     fetched: PropTypes.bool,
 };
 
