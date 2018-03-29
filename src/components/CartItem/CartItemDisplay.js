@@ -32,3 +32,15 @@ export const CartItemDisplay = ({ fetched, name, description, price, id, quantit
             </div> : <div className="loader" />}
     </div>
 );
+
+CartItemDisplay.propTypes = {
+    name: PropTypes.string,
+    description: PropTypes.string,
+    price: PropTypes.number,
+    id: PropTypes.string,
+    quantity: PropTypes.number,
+    increaseItemQuantity: PropTypes.func,
+    decreaseItemQuantity: PropTypes.func,
+    quantityFetchStatus: PropTypes.string,
+    fetched: PropTypes.bool,
+};

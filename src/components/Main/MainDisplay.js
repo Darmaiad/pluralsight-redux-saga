@@ -4,13 +4,17 @@ import PropTypes from 'prop-types';
 import { CartManageViewContainer } from '../CartManageView';
 import { CheckoutStatusViewContainer } from '../CheckoutStatusView';
 
-export const MainDisplay = ({ isCheckingOut })=>(
+export const MainDisplay = ({ isCheckingOut }) => (
     <div>
         {isCheckingOut ? <div>
-            <CheckoutStatusViewContainer/>
+            <CheckoutStatusViewContainer />
         </div> : <div>
-            <CartManageViewContainer/>
-        </div>}
+                <CartManageViewContainer />
+            </div>}
 
     </div>
 );
+
+MainDisplay.propTypes = {
+    isCheckingOut: PropTypes.bool,
+};

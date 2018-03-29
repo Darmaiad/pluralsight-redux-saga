@@ -16,3 +16,9 @@ export const CartItemListDisplay = ({ items, fetched }) => (
         }
     </div>
 );
+
+CartItemListDisplay.propTypes = {
+    items: PropTypes.object,
+    fetched: PropTypes.bool,
+};
+

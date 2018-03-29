@@ -16,5 +16,5 @@ export function* itemDetailsSaga() {
     const { items } = yield take(SET_CART_ITEMS);
     // When calling map, if you make sure that everything you return is something that can be yielded,
     // like a process, you can call yield and then map and it will happen asynchronously.
-    yield items.map((item)=> fork(loadItemDetails, item) );
+    yield items.map((item) => fork(loadItemDetails, item));
 }

@@ -6,7 +6,7 @@ import { CartItemListContainer } from '../CartItemList';
 import { OrderSummaryContainer } from '../OrderSummary';
 import { SupportAvailableContainer } from '../SupportAvailable';
 
-export const CartManageViewDisplay = ({})=>(
+export const CartManageViewDisplay = ({ }) => (
     <div>
         <section className="row">
             <section className="col-6">
@@ -19,18 +19,18 @@ export const CartManageViewDisplay = ({})=>(
         </section>
         <section className="row">
             <section className="col-6">
-                <UserInfoContainer/>
+                <UserInfoContainer />
                 <section className="cart-items">
                     <h3>
                         Your Cart
                     </h3>
-                    <CartItemListContainer/>
+                    <CartItemListContainer />
                 </section>
             </section>
             <OrderSummaryContainer />
         </section>
         <section>
-            <SupportAvailableContainer/>
+            <SupportAvailableContainer />
         </section>
     </div>
 );
