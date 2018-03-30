@@ -8,6 +8,5 @@ export function* fetchCartSaga() {
     const { id } = user;
     const response = yield fetch(`http://localhost:8081/cart/${id}`);
     const { items } = yield response.json();
-    console.log('List: ', items);
     yield put(setCartItems(items));
 }

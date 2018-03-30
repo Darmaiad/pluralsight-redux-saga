@@ -20,10 +20,6 @@ app.use(webpackDevMiddleware(compiler, {
   publicPath: compiler.options.output.publicPath,
   inline: true,
 }));
-// app.use(require('webpack-dev-middleware')(compiler, {
-//   noInfo: true,
-//   publicPath: config.output.publicPath,
-// }));
 
 app.use(webpackHotMiddleware(compiler, {
   'log': false,
@@ -47,14 +43,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-// app.listen(port, (err) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     open(`http://localhost:${port}`);
-//   }
-// });
-
-server.listen(port, () => {
-  console.info(`Redux Server is listening on port ${port}.`);
+server.listen(port, (err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.info(`Redux Cart App is listening on port ${port}.`);
+    open(`http://localhost:${port}`);
+  }
 });
