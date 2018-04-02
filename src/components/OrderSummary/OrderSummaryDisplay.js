@@ -59,3 +59,13 @@ export const OrderSummaryDisplay = ({
             </section>
         </section>
     );
+
+OrderSummaryDisplay.propTypes = {
+    subtotal: PropTypes.number,
+    shippingCost: PropTypes.number,
+    totalTax: PropTypes.number,
+    total: PropTypes.number,
+    subtotalFetched: PropTypes.bool,
+    shippingFetched: PropTypes.bool,
+    totalTaxFetched: PropTypes.bool,
+};

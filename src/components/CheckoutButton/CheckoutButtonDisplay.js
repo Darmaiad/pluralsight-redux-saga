@@ -8,3 +8,8 @@ export const CheckoutButtonDisplay = ({ handleRequestCheckout, canCheckOut }) =>
         </button>
     </div>
 );
+
+CheckoutButtonDisplay.propTypes = {
+    handleRequestCheckout: PropTypes.func,
+    canCheckOut: PropTypes.bool,
+};
