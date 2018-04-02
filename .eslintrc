@@ -36,6 +36,7 @@
     "no-alert": 0,
     "no-lone-blocks": 0,
     "new-cap": 0,
+    "padded-blocks": 1,
     "jsx-quotes": 1,
     "react/display-name": [
       1,

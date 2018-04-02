@@ -62,3 +62,7 @@ export const CheckoutStatusViewDisplay = ({ phase }) => (
         </div>
     </div>
 );
+
+CheckoutStatusViewDisplay.propTypes = {
+    phase: PropTypes.string,
+};
