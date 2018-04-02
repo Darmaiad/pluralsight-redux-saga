@@ -7,7 +7,7 @@ import {
     ERROR_CHECKOUT_PHASE,
     PURCHASE_FINALIZATION_CHECKOUT_PHASE,
     SUCCESS_CHECKOUT_PHASE,
-} from '../../actions';
+} from './../../actions';
 
 export const CheckoutStatusViewDisplay = ({ phase }) => (
     <div className="text-center">

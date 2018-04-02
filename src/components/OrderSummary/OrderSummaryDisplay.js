@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { CheckoutButtonContainer } from '../CheckoutButton';
-import { formatCurrency } from '../../utility';
+import { CheckoutButtonContainer } from './../CheckoutButton';
+import { formatCurrency } from './../../utility';
 
 export const OrderSummaryDisplay = ({
     subtotal,

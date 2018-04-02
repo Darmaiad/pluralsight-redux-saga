@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 
 import { createReducer } from './../utility';
-import { SET_ITEM_PRICE } from '../actions';
+import { SET_ITEM_PRICE } from './../actions';
 
 export const itemPrices = createReducer([], {
     [SET_ITEM_PRICE](state, { id, price }) {

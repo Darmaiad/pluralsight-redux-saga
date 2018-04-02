@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { CartManageViewContainer } from '../CartManageView';
-import { CheckoutStatusViewContainer } from '../CheckoutStatusView';
+import { CartManageViewContainer } from './../CartManageView';
+import { CheckoutStatusViewContainer } from './../CheckoutStatusView';
 
 export const MainDisplay = ({ isCheckingOut }) => (
     <div>

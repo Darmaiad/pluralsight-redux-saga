@@ -1,4 +1,4 @@
-import { makeActionCreator } from '../utility';
+import { makeActionCreator } from './../utility';
 
 export const SET_CHECKOUT_PHASE = 'SET_CHECKOUT_PHASE';
 export const QUANTITY_VERIFICATION_CHECKOUT_PHASE = 'QUANTITY_VERIFICATION_CHECKOUT_PHASE';

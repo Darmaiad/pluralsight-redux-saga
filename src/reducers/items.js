@@ -1,5 +1,5 @@
 import { createReducer } from './../utility';
-import { SET_ITEM_DETAILS } from '../actions';
+import { SET_ITEM_DETAILS } from './../actions';
 
 export const items = createReducer([], {
     [SET_ITEM_DETAILS](state, { item }) {

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { UserInfoContainer } from '../UserInfo';
-import { CartItemListContainer } from '../CartItemList';
-import { OrderSummaryContainer } from '../OrderSummary';
-import { SupportAvailableContainer } from '../SupportAvailable';
+import { UserInfoContainer } from './../UserInfo';
+import { CartItemListContainer } from './../CartItemList';
+import { OrderSummaryContainer } from './../OrderSummary';
+import { SupportAvailableContainer } from './../SupportAvailable';
 
 export const CartManageViewDisplay = ({ }) => (
     <div>
