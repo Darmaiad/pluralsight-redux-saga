@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const SupportAvailableDisplay = ({ isAvailable }) => (
     <div className="customer-service-message">
@@ -9,3 +10,7 @@ export const SupportAvailableDisplay = ({ isAvailable }) => (
     </div>}
     </div>
 );
+
+SupportAvailableDisplay.propTypes = {
+    isAvailable: PropTypes.bool,
+};
