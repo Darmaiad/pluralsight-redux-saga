@@ -11,5 +11,5 @@ export const CheckoutButtonDisplay = ({ handleRequestCheckout, canCheckOut }) =>
 
 CheckoutButtonDisplay.propTypes = {
     handleRequestCheckout: PropTypes.func,
-    canCheckOut: PropTypes.number,
+    canCheckOut: PropTypes.bool,
 };
