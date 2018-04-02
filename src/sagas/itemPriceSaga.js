@@ -1,4 +1,4 @@
-import { take, fork, put, call, all } from 'redux-saga/effects';
+import { take, put, call, all } from 'redux-saga/effects';
 import fetch from 'isomorphic-fetch';
 
 import { SET_CART_ITEMS, SET_CURRENT_USER, SET_ITEM_DETAILS, setItemPrice } from './../actions';
@@ -11,10 +11,10 @@ function* fetchItemPrice(id, currency) {
 };
 
 export function* itemPriceSaga() {
-    const [{ user }, { items }] = yield ([
+    const [{ user }, { items }] = yield (all([
         take(SET_CURRENT_USER),
         take(SET_CART_ITEMS),
-    ]);
+    ]));
 
-    yield items.map((item) => call(fetchItemPrice, item.id, user.country));
+    yield all(items.map((item) => call(fetchItemPrice, item.id, user.country)));
 };

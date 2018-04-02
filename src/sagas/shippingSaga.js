@@ -20,11 +20,13 @@ function* shipping() {
     const itemRequestString = items.reduce((string, item) => {
         // For that many times as its quantity
         for (let i = 0; i < item.get('quantity'); i++) {
-            // Add its Id and a comma to the string
+            // Add its Id and a comma to the string that we will sent to the server so that it can calculate the cost
             string += item.get('id') + ',';
         }
         return string;
     }, "").replace(/,\s*$/, '');
+
+    // For security reasons we will not calculate the cost on the client side
 
     const response = yield fetch(`http://localhost:8081/shipping/${itemRequestString}`);
     const { total } = yield response.json();
