@@ -16,19 +16,19 @@ import { currentUserSelector } from './../selectors';
 // Charging phase, the quantity verification phase, etc, updating the user on what's happing in every step.
 
 export function* validateCart(user) {
-    const response = yield fetch(`http://localhost:8081/cart/validate/${user.get('id')}`);
+    const response = yield fetch(`/cart/validate/${user.get('id')}`);
     const { validated } = yield response.json();
     return validated;
 }
 
 export function* validateCreditCard(user) {
-    const response = yield fetch(`http://localhost:8081/card/validate/${user.get('id')}`);
+    const response = yield fetch(`/card/validate/${user.get('id')}`);
     const { validated } = yield response.json();
     return validated;
 }
 
 export function* executePurchase(user) {
-    const response = yield fetch(`http://localhost:8081/card/charge/${user.get('id')}`);
+    const response = yield fetch(`/card/charge/${user.get('id')}`);
     const { success } = yield response.json();
     return success;
 }

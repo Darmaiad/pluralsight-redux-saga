@@ -15,7 +15,7 @@ import { currentUserSelector } from './../selectors/currentUserSelector';
 export function* handleIncreaseItemQuantity({ id }) {
     yield put(setItemQuantityFetchStatus(FETCHING));
     const user = yield select(currentUserSelector);
-    const response = yield call(fetch, `http://localhost:8081/cart/add/${user.get('id')}/${id}`);
+    const response = yield call(fetch, `/cart/add/${user.get('id')}/${id}`);
 
     // if there are not enough items in stock to complete the request, the server will return 503
     if (response.status !== 200) {
@@ -35,7 +35,7 @@ export function* handleDecreaseItemQuantity({ id, local }) {
     }
     yield put(setItemQuantityFetchStatus(FETCHING));
     const user = yield select(currentUserSelector);
-    const response = yield call(fetch, `http://localhost:8081/cart/remove/${user.get('id')}/${id}`);
+    const response = yield call(fetch, `/cart/remove/${user.get('id')}/${id}`);
 
     if (response.status !== 200) {
         /* eslint-disable no-console */

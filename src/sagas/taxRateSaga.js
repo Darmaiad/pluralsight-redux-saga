@@ -8,7 +8,7 @@ export function* taxRateSaga() {
     const { user } = yield take(SET_CURRENT_USER);
     // Those lines will run when the SET_CURRENT_USER action is sent
     const { country } = user;
-    const response = yield fetch(`http://localhost:8081/tax/${country}`);
+    const response = yield fetch(`/tax/${country}`);
     const { rate } = yield response.json();
 
     yield put(setTaxRate(rate));

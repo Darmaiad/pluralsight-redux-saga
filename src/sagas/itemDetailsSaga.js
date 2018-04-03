@@ -5,7 +5,7 @@ import { SET_CART_ITEMS, setItemDetails } from './../actions';
 
 export function* loadItemDetails(item) {
     const { id } = item;
-    const response = yield fetch(`http://localhost:8081/items/${id}`);
+    const response = yield fetch(`/items/${id}`);
     const data = yield response.json();
     const info = data[0];
     yield put(setItemDetails(info));

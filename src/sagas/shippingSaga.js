@@ -28,7 +28,7 @@ function* shipping() {
 
     // For security reasons we will not calculate the cost on the client side
 
-    const response = yield fetch(`http://localhost:8081/shipping/${itemRequestString}`);
+    const response = yield fetch(`/shipping/${itemRequestString}`);
     const { total } = yield response.json();
 
     yield put(setShippingCost(total));
