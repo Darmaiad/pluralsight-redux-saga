@@ -29,7 +29,7 @@ export function* handleIncreaseItemQuantity({ id }) {
 };
 
 export function* handleDecreaseItemQuantity({ id, local }) {
-    // If we only adjusted (decreased) locally to return to the original (because there are not enough items), we do not want to dispatch to the server 
+    // If we only adjusted (decreased) locally to return to the original (because there are not enough items), we do not want to dispatch to the server.
     if (local) {
         return;
     }

@@ -29,14 +29,15 @@
       1,
       "always"
     ],
-    "no-trailing-spaces": 0,
+    "no-trailing-spaces": 1,
     "eol-last": 1,
-    "no-unused-vars": 0,
+    "no-unused-vars": 1,
     "no-underscore-dangle": 0,
     "no-alert": 0,
     "no-lone-blocks": 0,
     "new-cap": 0,
     "padded-blocks": 1,
+    "no-multiple-empty-lines": 1,
     "jsx-quotes": 1,
     "react/display-name": [
       1,
