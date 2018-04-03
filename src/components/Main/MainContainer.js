@@ -9,9 +9,7 @@ const mapStateToProps = (state) => {
         isCheckingOut: isCheckingOutSelector(state),
     };
 };
-const mapDispatchToProps = (dispatch) => ({
-    
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 export const MainContainer = connect(
     mapStateToProps,

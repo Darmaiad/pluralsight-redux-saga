@@ -1,7 +1,7 @@
 import { take, put, call, all } from 'redux-saga/effects';
 import fetch from 'isomorphic-fetch';
 
-import { SET_CART_ITEMS, SET_CURRENT_USER, SET_ITEM_DETAILS, setItemPrice } from './../actions';
+import { SET_CART_ITEMS, SET_CURRENT_USER, setItemPrice } from './../actions';
 
 function* fetchItemPrice(id, currency) {
     const response = yield fetch(`http://localhost:8081/prices/${currency}/${id}`);

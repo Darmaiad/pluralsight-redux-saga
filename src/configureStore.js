@@ -1,9 +1,7 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { Iterable } from 'immutable';
 import createSagaMiddleware from 'redux-saga';
 
-import { getQuery } from './utility';
 import { reducer } from './combineReducers';
 import { defaultState } from './defaultState';
 import { initSagas } from './initSagas';
@@ -16,11 +14,6 @@ const configureStore = () => {
     middlewares.push(sagaMiddleware);
 
     if (process.env.NODE_ENV === 'development') {
-        const stateTransformer = (state) => {
-            if (Iterable.isIterable(state)) return state.toJS();
-            else return state;
-        };
-
         // Using require because we ignore them with webpack
         const createLogger = require('redux-logger').createLogger;
 

@@ -16,7 +16,7 @@ function* shipping() {
     yield put(setShippingFetchStatus(FETCHING));
     const items = yield select(cartItemsSelector);
 
-    // For each item 
+    // For each item
     const itemRequestString = items.reduce((string, item) => {
         // For that many times as its quantity
         for (let i = 0; i < item.get('quantity'); i++) {
