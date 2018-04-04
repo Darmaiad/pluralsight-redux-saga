@@ -2,9 +2,7 @@ import express from 'express';
 
 import CardController from './../controllers/CardController';
 
-let cardRouter = express.Router();
-cardRouter.use(["/validate/:owner", "/charge/:owner"], CardController.ownerMiddleware);
-cardRouter.get("/validate/:owner", CardController.validateOwner);
-cardRouter.get("/charge/:owner", CardController.chargeOwner);
-
-export default cardRouter;
+export let card = express.Router();
+card.use(["/validate/:owner", "/charge/:owner"], CardController.ownerMiddleware);
+card.get("/validate/:owner", CardController.validateOwner);
+card.get("/charge/:owner", CardController.chargeOwner);

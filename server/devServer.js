@@ -8,9 +8,7 @@ import path from 'path';
 import open from 'open';
 
 import config from './../webpack.config.dev';
-import cartRouter from './routes/cartRoute';
-import cardRouter from './routes/cardRoute';
-import miscRouter from './routes/miscRoute';
+import * as Router from './routes';
 
 /* eslint-disable no-console */
 
@@ -37,14 +35,15 @@ app.use(webpackHotMiddleware(compiler, {
   'heartbeat': 10 * 1000,
 }));
 
+// Routes
+app.use("/", Router.misc);
+app.use("/cart", Router.cart);
+app.use("/card", Router.card);
+
+
 // Server is (probably) used to enable Websockets
 const server = http.createServer(app);
 const io = socketIO(server);
-
-app.use("/", miscRouter);
-app.use("/cart", cartRouter);
-app.use("/card", cardRouter);
-
 io.on('connection', (connection) => {
   let supportAvailable = false;
   setInterval(() => {
