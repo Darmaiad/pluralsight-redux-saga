@@ -16,13 +16,6 @@ const port = process.env.PORT || 9000;
 const app = express();
 const compiler = webpack(config);
 
-// Simulate a small amount of delay to demonstrate app's async features
-const serverDelayConstant = 100;
-app.use((req, res, next) => {
-  const delay = (Math.random() * 15 + 5) * serverDelayConstant;
-  setTimeout(next, delay);
-});
-
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
   publicPath: compiler.options.output.publicPath,
@@ -40,8 +33,7 @@ app.use("/", Router.misc);
 app.use("/cart", Router.cart);
 app.use("/card", Router.card);
 
-
-// Server is (probably) used to enable Websockets
+// Websocket
 const server = http.createServer(app);
 const io = socketIO(server);
 io.on('connection', (connection) => {
