@@ -96,7 +96,6 @@ const CartController = {
         .send(cart);
     };
   },
-
 };
 
 export default CartController;

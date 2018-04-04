@@ -1,20 +1,22 @@
-import http from 'http';
 import express from 'express';
+import http from 'http';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from "webpack-hot-middleware";
 import socketIO from 'socket.io';
 import path from 'path';
-// import YAML from 'yamljs';
 import open from 'open';
 
 import config from './../webpack.config.dev';
+import cartRouter from './routes/cartRoute';
+import cardRouter from './routes/cardRoute';
 
 /* eslint-disable no-console */
 
 const port = process.env.PORT || 9000;
 const app = express();
 const compiler = webpack(config);
+
 
 const database = require('./database/getDatabase').database;
 
@@ -42,10 +44,9 @@ app.use(webpackHotMiddleware(compiler, {
 const server = http.createServer(app);
 const io = socketIO(server);
 
-// const database = YAML.load('./server/database.yml');
 
-import cartRouter from './routes/cartRoute';
 app.use("/cart", cartRouter);
+app.use("/card", cardRouter);
 
 // const makeCartAdjustmentRoute = (shouldAdd = true) => (req, res) => {
 //   const { owner, itemID } = req.params;
@@ -159,55 +160,55 @@ app.get("/user/:id", (req, res) => {
 //     .json(cart);
 // });
 
-app.use(["/card/validate/:owner", "/card/charge/:owner"], (req, res, next) => {
-  const { owner } = req.params;
-  const cart = database.carts.find((cart) => cart.owner === owner);
-  const card = database.cards.find((card) => card.owner === owner);
-  if (!cart) {
-    return res
-      .status(404)
-      .json({ error: "No cart with the specified owner", owner });
-  }
-  if (!card) {
-    res.status(500).send({ error: `No card is available for user ${owner}` });
-  }
-  req.cart = cart;
-  req.card = card;
-  next();
-});
+// app.use(["/card/validate/:owner", "/card/charge/:owner"], (req, res, next) => {
+//   const { owner } = req.params;
+//   const cart = database.carts.find((cart) => cart.owner === owner);
+//   const card = database.cards.find((card) => card.owner === owner);
+//   if (!cart) {
+//     return res
+//       .status(404)
+//       .json({ error: "No cart with the specified owner", owner });
+//   }
+//   if (!card) {
+//     res.status(500).send({ error: `No card is available for user ${owner}` });
+//   }
+//   req.cart = cart;
+//   req.card = card;
+//   next();
+// });
 
-app.get("/card/validate/:owner", (req, res) => {
-  res
-    .status(200)
-    .json({ validated: true });
-});
+// app.get("/card/validate/:owner", (req, res) => {
+//   res
+//     .status(200)
+//     .json({ validated: true });
+// });
 
-app.get("/card/charge/:owner", (req, res) => {
-  console.log(req.cart);
-  const { card, cart } = req;
-  const { owner } = req.params;
-  const country = database.users.find((user) => user.id === owner).country;
-  const total = cart.items.reduce((total, { quantity, id }) => {
-    const item = database.items.find((item) => item.id === id);
-    const symbol = country === "CAD" ? "cad" : "usd";
-    const baseValue = item[symbol];
-    total += baseValue * quantity;
-    return total;
-  }, 0);
+// app.get("/card/charge/:owner", (req, res) => {
+//   console.log(req.cart);
+//   const { card, cart } = req;
+//   const { owner } = req.params;
+//   const country = database.users.find((user) => user.id === owner).country;
+//   const total = cart.items.reduce((total, { quantity, id }) => {
+//     const item = database.items.find((item) => item.id === id);
+//     const symbol = country === "CAD" ? "cad" : "usd";
+//     const baseValue = item[symbol];
+//     total += baseValue * quantity;
+//     return total;
+//   }, 0);
 
-  console.log('Available funds: ', card.availableFunds, '\nTotal amount:', total);
+//   console.log('Available funds: ', card.availableFunds, '\nTotal amount:', total);
 
-  if (card.availableFunds <= total) {
-    return res
-      .status(402)
-      .json({ success: false });
-  }
+//   if (card.availableFunds <= total) {
+//     return res
+//       .status(402)
+//       .json({ success: false });
+//   }
 
-  card.availableFunds -= total;
-  res
-    .status(201)
-    .send({ success: true });
-});
+//   card.availableFunds -= total;
+//   res
+//     .status(201)
+//     .send({ success: true });
+// });
 
 app.get("/items/:ids", (req, res) => {
   const ids = req.params.ids.split(',');
