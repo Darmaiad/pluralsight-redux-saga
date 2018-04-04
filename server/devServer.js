@@ -5,8 +5,9 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from "webpack-hot-middleware";
 import socketIO from 'socket.io';
 import path from 'path';
-import YAML from 'yamljs';
+// import YAML from 'yamljs';
 import open from 'open';
+
 import config from './../webpack.config.dev';
 
 /* eslint-disable no-console */
@@ -14,6 +15,9 @@ import config from './../webpack.config.dev';
 const port = process.env.PORT || 9000;
 const app = express();
 const compiler = webpack(config);
+
+const database = require('./database/getDatabase').database;
+
 
 // Simulate a small amount of delay to demonstrate app's async features
 const serverDelayConstant = 100;
@@ -38,66 +42,69 @@ app.use(webpackHotMiddleware(compiler, {
 const server = http.createServer(app);
 const io = socketIO(server);
 
-const database = YAML.load('./server/database.yml');
+// const database = YAML.load('./server/database.yml');
 
-const makeCartAdjustmentRoute = (shouldAdd = true) => (req, res) => {
-  const { owner, itemID } = req.params;
-  const cart = database.carts.find((cart) => cart.owner === owner);
-  if (!cart) {
-    return res
-      .status(500)
-      .json({
-        error: "No cart found with the specified ID",
-        owner,
-      });
-  }
+import cartRouter from './routes/cartRoute';
+app.use("/cart", cartRouter);
 
-  const item = database.items.find((item) => item.id === itemID);
-  if (!item) {
-    return res
-      .status(500)
-      .json({
-        error: "No item found with the specified ID",
-        itemID,
-      });
-  }
+// const makeCartAdjustmentRoute = (shouldAdd = true) => (req, res) => {
+//   const { owner, itemID } = req.params;
+//   const cart = database.carts.find((cart) => cart.owner === owner);
+//   if (!cart) {
+//     return res
+//       .status(500)
+//       .json({
+//         error: "No cart found with the specified ID",
+//         owner,
+//       });
+//   }
 
-  const existingItem = cart.items.find((cartItem) => cartItem.id === itemID);
-  if (existingItem) {
-    if (shouldAdd && parseInt(existingItem.quantity) >= parseInt(item.quantityAvailable)) {
-      return res.status(503)
-        .json({
-          error: "An insufficient quantity of items remains.",
-          itemID,
-          quantityAvailable: item.quantityAvailable,
-        });
-    }
-    existingItem.quantity += (shouldAdd ? 1 : -1);
-    if (existingItem.quantity === 0) {
-      cart.items = cart.items.filter((item) => item.id !== itemID);
-    }
-  } else {
-    if (shouldAdd) {
-      cart.items.push({
-        quantity: 1,
-        id: itemID,
-      });
-    } else {
-      return res.status(500)
-        .json({
-          error: "No item with the specified ID exists in the cart to be removed",
-          owner,
-          itemID,
-        });
-    }
-  }
-  res
-    .status(200)
-    .send(cart);
-};
+//   const item = database.items.find((item) => item.id === itemID);
+//   if (!item) {
+//     return res
+//       .status(500)
+//       .json({
+//         error: "No item found with the specified ID",
+//         itemID,
+//       });
+//   }
 
-app.get("/cart/add/:owner/:itemID", makeCartAdjustmentRoute(true));
-app.get("/cart/remove/:owner/:itemID", makeCartAdjustmentRoute(false));
+//   const existingItem = cart.items.find((cartItem) => cartItem.id === itemID);
+//   if (existingItem) {
+//     if (shouldAdd && parseInt(existingItem.quantity) >= parseInt(item.quantityAvailable)) {
+//       return res.status(503)
+//         .json({
+//           error: "An insufficient quantity of items remains.",
+//           itemID,
+//           quantityAvailable: item.quantityAvailable,
+//         });
+//     }
+//     existingItem.quantity += (shouldAdd ? 1 : -1);
+//     if (existingItem.quantity === 0) {
+//       cart.items = cart.items.filter((item) => item.id !== itemID);
+//     }
+//   } else {
+//     if (shouldAdd) {
+//       cart.items.push({
+//         quantity: 1,
+//         id: itemID,
+//       });
+//     } else {
+//       return res.status(500)
+//         .json({
+//           error: "No item with the specified ID exists in the cart to be removed",
+//           owner,
+//           itemID,
+//         });
+//     }
+//   }
+//   res
+//     .status(200)
+//     .send(cart);
+// };
+
+// app.get("/cart/add/:owner/:itemID", makeCartAdjustmentRoute(true));
+// app.get("/cart/remove/:owner/:itemID", makeCartAdjustmentRoute(false));
 
 app.get("/user/:id", (req, res) => {
   const id = req.params.id;
@@ -116,48 +123,55 @@ app.get("/user/:id", (req, res) => {
   }
 });
 
-app.use(["/cart/validate/:owner", "/cart/:owner", "/card/charge/:owner"], (req, res, next) => {
+// app.use(["/cart/validate/:owner", "/cart/:owner"], (req, res, next) => {
+//   const { owner } = req.params;
+//   const cart = database.carts.find((cart) => cart.owner === owner);
+//   if (!cart) {
+//     return res
+//       .status(404)
+//       .json({ error: "No cart with the specified owner", owner });
+//   } else {
+//     req.cart = cart;
+//     next();
+//   }
+// });
+
+// app.get("/cart/validate/:owner", (req, res) => {
+//   const { items } = req.cart;
+//   let validated = true;
+//   let error = null;
+//   items.forEach(({ id, quantity }) => {
+//     const item = database.items.find((item) => item.id === id);
+//     if (item.quantityAvailable < quantity) {
+//       validated = false;
+//       error = "There is an insufficient quantity of " + id;
+//     }
+//   });
+//   res
+//     .status(200)
+//     .json({ validated, error });
+// });
+
+// app.get("/cart/:owner", (req, res) => {
+//   const cart = req.cart;
+//   res
+//     .status(200)
+//     .json(cart);
+// });
+
+app.use(["/card/validate/:owner", "/card/charge/:owner"], (req, res, next) => {
   const { owner } = req.params;
   const cart = database.carts.find((cart) => cart.owner === owner);
+  const card = database.cards.find((card) => card.owner === owner);
   if (!cart) {
     return res
       .status(404)
       .json({ error: "No cart with the specified owner", owner });
-  } else {
-    req.cart = cart;
-    next();
   }
-});
-
-app.get("/cart/validate/:owner", (req, res) => {
-  const { items } = req.cart;
-  let validated = true;
-  let error = null;
-  items.forEach(({ id, quantity }) => {
-    const item = database.items.find((item) => item.id === id);
-    if (item.quantityAvailable < quantity) {
-      validated = false;
-      error = "There is an insufficient quantity of " + id;
-    }
-  });
-  res
-    .status(200)
-    .json({ validated, error });
-});
-
-app.get("/cart/:owner", (req, res) => {
-  const cart = req.cart;
-  res
-    .status(200)
-    .json(cart);
-});
-
-app.use(["/card/validate/:owner", "/card/charge/:owner"], (req, res, next) => {
-  const { owner } = req.params;
-  const card = database.cards.find((card) => card.owner === owner);
   if (!card) {
     res.status(500).send({ error: `No card is available for user ${owner}` });
   }
+  req.cart = cart;
   req.card = card;
   next();
 });
@@ -169,6 +183,7 @@ app.get("/card/validate/:owner", (req, res) => {
 });
 
 app.get("/card/charge/:owner", (req, res) => {
+  console.log(req.cart);
   const { card, cart } = req;
   const { owner } = req.params;
   const country = database.users.find((user) => user.id === owner).country;
@@ -179,6 +194,8 @@ app.get("/card/charge/:owner", (req, res) => {
     total += baseValue * quantity;
     return total;
   }, 0);
+
+  console.log('Available funds: ', card.availableFunds, '\nTotal amount:', total);
 
   if (card.availableFunds <= total) {
     return res
