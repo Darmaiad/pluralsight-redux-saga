@@ -18,7 +18,7 @@ describe('The Current User Saga', () => {
         expect(gen.next().value).toEqual(take(GET_CURRENT_USER_INFO));
         // The yield will return a call effect object and will not actually call the API.
         // We pass the id const, so that it can be used inside the saga.
-        expect(gen.next({ id }).value).toEqual(call(fetch, `http://localhost:8081/user/${id}`));
+        expect(gen.next({ id }).value).toEqual(call(fetch, `/user/${id}`));
         expect(gen.next(response).value).toEqual(apply(response, json));
         expect(gen.next(user).value).toEqual(put(setCurrentUser(user)));
     });

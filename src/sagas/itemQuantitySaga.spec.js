@@ -25,7 +25,7 @@ describe('Item quantity saga', () => {
             gen = handleIncreaseItemQuantity(item);
             expect(gen.next().value).toEqual(put(setItemQuantityFetchStatus(FETCHING)));
             expect(gen.next().value).toEqual(select(currentUserSelector));
-            expect(gen.next(user).value).toEqual(call(fetch, `http://localhost:8081/cart/add/${user.get('id')}/${item.id}`));
+            expect(gen.next(user).value).toEqual(call(fetch, `/cart/add/${user.get('id')}/${item.id}`));
         });
 
         test('Increasing quantity successfully', () => {
