@@ -25,7 +25,6 @@ const CardController = {
     },
 
     chargeOwner(req, res) {
-        console.log(req.cart);
         const { card, cart } = req;
         const { owner } = req.params;
         const country = database.users.find((user) => user.id === owner).country;
@@ -36,8 +35,6 @@ const CardController = {
             total += baseValue * quantity;
             return total;
         }, 0);
-
-        console.log('Available funds: ', card.availableFunds, '\nTotal amount:', total);
 
         if (card.availableFunds <= total) {
             return res
