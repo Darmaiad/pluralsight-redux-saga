@@ -28,6 +28,13 @@ app.use(webpackHotMiddleware(compiler, {
   'heartbeat': 10 * 1000,
 }));
 
+// Simulate a small amount of delay to demonstrate app's async features
+const serverDelayConstant = 100;
+app.use((req, res, next) => {
+  const delay = (Math.random() * 15 + 5) * serverDelayConstant;
+  setTimeout(next, delay);
+});
+
 // Routes
 app.use("/", Router.misc);
 app.use("/cart", Router.cart);
