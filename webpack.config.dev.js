@@ -37,7 +37,8 @@ export default {
         ],
     },
     plugins: [
-        new webpack.DefinePlugin(GLOBALS),
+        ...config.plugins,
+        // new webpack.DefinePlugin(GLOBALS),
         new webpack.HotModuleReplacementPlugin(),
     ],
     output: {

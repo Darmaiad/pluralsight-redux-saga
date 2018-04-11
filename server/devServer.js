@@ -7,14 +7,16 @@ import socketIO from 'socket.io';
 import path from 'path';
 import open from 'open';
 
-import config from './../webpack.config.dev';
+import appConfig from './../config';
+import webpackConfig from './../webpack.config.dev';
 import * as Router from './routes';
 
 /* eslint-disable no-console */
 
-const port = process.env.PORT || 9000;
 const app = express();
-const compiler = webpack(config);
+const port = appConfig.port;
+const host = appConfig.host;
+const compiler = webpack(webpackConfig);
 
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
@@ -60,6 +62,6 @@ server.listen(port, (err) => {
     console.log(err);
   } else {
     console.info(`Redux Cart App is listening on port ${port}.`);
-    open(`http://localhost:${port}`);
+    open(`http://${host}:${port}`);
   }
 });
