@@ -6,10 +6,12 @@ import open from 'open';
 import compression from 'compression';
 
 import * as Router from './routes';
+import config from './../config';
 
 /* eslint-disable no-console */
 
-const port = process.env.PORT || 9000;
+const port = config.port;
+const host = config.host;
 const app = express();
 
 app.use(compression());
@@ -18,8 +20,8 @@ app.use(express.static('dist'));
 // Simulate a small amount of delay to demonstrate app's async features
 const serverDelayConstant = 100;
 app.use((req, res, next) => {
-  const delay = (Math.random() * 15 + 5) * serverDelayConstant;
-  setTimeout(next, delay);
+    const delay = (Math.random() * 15 + 5) * serverDelayConstant;
+    setTimeout(next, delay);
 });
 
 // Routes
@@ -31,11 +33,11 @@ app.use("/card", Router.card);
 const server = http.createServer(app);
 const io = socketIO(server);
 io.on('connection', (connection) => {
-  let supportAvailable = false;
-  setInterval(() => {
-    supportAvailable = !supportAvailable;
-    connection.emit(supportAvailable ? 'SUPPORT_AVAILABLE' : 'SUPPORT_NOT_AVAILABLE');
-  }, 10000);
+    let supportAvailable = false;
+    setInterval(() => {
+        supportAvailable = !supportAvailable;
+        connection.emit(supportAvailable ? 'SUPPORT_AVAILABLE' : 'SUPPORT_NOT_AVAILABLE');
+    }, 10000);
 });
 
 app.get('*', (req, res) => {
@@ -46,6 +48,7 @@ app.listen(port, (err) => {
     if (err) {
         console.log(err);
     } else {
-        open(`http://localhost:${port}`);
+        console.info(`Redux Cart App Production Build is listening on port ${port}.`);
+        open(`http://${host}:${port}`);
     }
 });

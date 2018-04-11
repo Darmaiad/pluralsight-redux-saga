@@ -28,7 +28,6 @@ export default {
     output: {
         path: null,
         filename: "bundle.js",
-        // path: path.resolve(__dirname, "dist"),
         publicPath: `http://${config.host}:${config.port}/`,
     },
     resolve: {
