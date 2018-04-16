@@ -2,10 +2,6 @@ import webpack from 'webpack';
 
 import config from './config';
 
-const GLOBALS = {
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-};
-
 export default {
     devtool: 'source-map',
     noInfo: false,
@@ -23,7 +19,9 @@ export default {
         ],
     },
     plugins: [
-        new webpack.DefinePlugin(GLOBALS),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        }),
     ],
     output: {
         path: null,

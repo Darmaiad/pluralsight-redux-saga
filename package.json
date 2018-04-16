@@ -5,18 +5,19 @@
   "scripts": {
     "test": "jest",
     "start": "babel-node server/devServer.js",
-    "dev": "nodemon --watch server/**/* --exec babel-node --inspect server/devServer.js",
+    "dev": "cross-env NODE_ENV=development nodemon --watch server/**/* --exec babel-node --inspect server/devServer.js",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
     "prod:html": "babel-node server/buildHTML.js",
     "preprod": "npm-run-all clean-dist prod:html",
-    "prod": "babel-node server/build.js",
-    "postprod": "babel-node server/prodServer.js"
+    "prod": "cross-env NODE_ENV=production babel-node server/build.js",
+    "postprod": "cross-env NODE_ENV=production babel-node server/prodServer.js"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "chance": "^1.0.6",
     "classnames": "^2.2.5",
+    "cross-env": "^5.1.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "immutable": "^3.8.2",
