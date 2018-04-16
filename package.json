@@ -69,6 +69,16 @@
     "webpack-dev-server": "^1.16.2",
     "webpack-hot-middleware": "^2.17.1"
   },
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ],
+    "plugins": [
+      "transform-regenerator",
+      "transform-object-rest-spread"
+    ]
+  },
   "author": "Darmaiad",
   "keywords": [
     "react",
