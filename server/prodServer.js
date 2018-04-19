@@ -3,6 +3,8 @@ import http from 'http';
 import socketIO from 'socket.io';
 import path from 'path';
 import compression from 'compression';
+import open from 'open';
+
 
 import * as Router from './routes';
 import config from './../config';
@@ -10,7 +12,7 @@ import config from './../config';
 /* eslint-disable no-console */
 
 const port = config.port;
-// const host = config.host;
+const host = config.host;
 const app = express();
 
 app.use(compression());
@@ -50,5 +52,6 @@ app.listen(port, (err) => {
         console.log(err);
     } else {
         console.info(`Redux Cart App Production Build is listening on port ${port}.`);
+        open(`http://${host}:${port}`);
     }
 });
