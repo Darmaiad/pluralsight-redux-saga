@@ -33,7 +33,6 @@ const server = http.createServer(app);
 const io = socketIO(server);
 io.on('connection', (connection) => {
     let supportAvailable = false;
-    console.log(connection)
     setInterval(() => {
         supportAvailable = !supportAvailable;
         connection.emit(supportAvailable ? 'SUPPORT_AVAILABLE' : 'SUPPORT_NOT_AVAILABLE');
