@@ -1,7 +1,5 @@
 import webpack from 'webpack';
 
-import config from './config';
-
 export default {
     devtool: 'source-map',
     noInfo: false,
@@ -22,7 +20,6 @@ export default {
     output: {
         path: null,
         filename: "bundle.js",
-        // publicPath: `http://${config.host}:${config.port}/`,
         publicPath: '/',
     },
     resolve: {
