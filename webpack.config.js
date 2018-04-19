@@ -22,7 +22,8 @@ export default {
     output: {
         path: null,
         filename: "bundle.js",
-        publicPath: `http://${config.host}:${config.port}/`,
+        // publicPath: `http://${config.host}:${config.port}/`,
+        publicPath: '/',
     },
     resolve: {
         extensions: ['', '.js', '.jsx'],

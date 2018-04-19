@@ -18,6 +18,9 @@ export default {
             ...config.module.loaders,
         ],
     },
+    devServer: {
+        contentBase: './dist',
+    },
     plugins: [
         ...config.plugins,
         new webpack.optimize.OccurrenceOrderPlugin(),
