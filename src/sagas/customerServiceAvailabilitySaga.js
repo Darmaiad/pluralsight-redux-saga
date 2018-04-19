@@ -1,11 +1,11 @@
 import { take, put } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
+import io from 'socket.io-client';
 
-import { connect } from './../createSocketConnection';
 import { setCustomerServiceAvailability } from './../actions';
 
 export function* customerServiceAvailabilitySaga() {
-    const socket = connect();
+    const socket = io('http://localhost:7777/');
 
     // Event chanels take one argument which is a function that takes an emit argument.
     // When you call emit it causes the channel itself to emit an action

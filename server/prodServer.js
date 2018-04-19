@@ -2,7 +2,6 @@ import express from 'express';
 import http from 'http';
 import socketIO from 'socket.io';
 import path from 'path';
-// import open from 'open';
 import compression from 'compression';
 
 import * as Router from './routes';
@@ -34,6 +33,7 @@ const server = http.createServer(app);
 const io = socketIO(server);
 io.on('connection', (connection) => {
     let supportAvailable = false;
+    console.log(connection)
     setInterval(() => {
         supportAvailable = !supportAvailable;
         connection.emit(supportAvailable ? 'SUPPORT_AVAILABLE' : 'SUPPORT_NOT_AVAILABLE');
@@ -44,11 +44,12 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './../dist/index.html'));
 });
 
+server.listen(7777);
+
 app.listen(port, (err) => {
     if (err) {
         console.log(err);
     } else {
         console.info(`Redux Cart App Production Build is listening on port ${port}.`);
-        // open(`http://${host}:${port}`);
     }
 });

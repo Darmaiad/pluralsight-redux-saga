@@ -6,9 +6,6 @@ import config from './webpack.config';
 
 export default {
     ...config,
-    devServer: {
-        contentBase: path.resolve(__dirname, 'dist'),
-    },
     entry: './src/index',
     output: {
         ...config.output,
@@ -17,6 +14,7 @@ export default {
     module: {
         loaders: [
             { test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel'] },
+            { test: /(\.css)$/, loader: ExtractTextPlugin.extract('css?sourceMap') },
             ...config.module.loaders,
         ],
     },

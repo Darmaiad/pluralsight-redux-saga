@@ -6,12 +6,8 @@ export default {
     devtool: 'source-map',
     noInfo: false,
     target: 'web',
-    devServer: {},
     module: { // Careful on loader ordering
         loaders: [
-            {
-                test: /(\.css)$/, loaders: ['style', 'css'],
-            },
             {
                 test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
                 loader: 'file-loader?name=[name].[ext]', // <-- retain original file name

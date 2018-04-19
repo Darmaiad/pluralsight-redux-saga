@@ -29,6 +29,9 @@ export default {
                 exclude: /node_modules/,
                 loader: "eslint-loader",
             },
+            {
+                test: /(\.css)$/, loaders: ['style', 'css'],
+            },
             ...config.module.loaders,
         ],
     },
