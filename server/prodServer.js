@@ -5,7 +5,6 @@ import path from 'path';
 import compression from 'compression';
 import open from 'open';
 
-
 import * as Router from './routes';
 import config from './../config';
 
@@ -13,6 +12,8 @@ import config from './../config';
 
 const port = config.port;
 const host = config.host;
+const wsPort = config.wsPort;
+
 const app = express();
 
 app.use(compression());
@@ -45,7 +46,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './../dist/index.html'));
 });
 
-server.listen(7777);
+server.listen(wsPort);
 
 app.listen(port, (err) => {
     if (err) {

@@ -15,6 +15,7 @@ import * as Router from './routes';
 
 const app = express();
 const port = appConfig.port;
+const wsPort = appConfig.wsPort;
 const host = appConfig.host;
 const compiler = webpack(webpackConfig);
 
@@ -57,7 +58,9 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './../public/index.html'));
 });
 
-server.listen(port, (err) => {
+server.listen(wsPort);
+
+app.listen(port, (err) => {
   if (err) {
     console.log(err);
   } else {

@@ -3,10 +3,9 @@ import { eventChannel } from 'redux-saga';
 import io from 'socket.io-client';
 
 import { setCustomerServiceAvailability } from './../actions';
-import config from './../../config';
 
 export function* customerServiceAvailabilitySaga() {
-    const socket = io(`http://${config.host}:7777/`);
+    const socket = io(`http://${host}:${wsPort}/`);
 
     // Event chanels take one argument which is a function that takes an emit argument.
     // When you call emit it causes the channel itself to emit an action
