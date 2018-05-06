@@ -94,7 +94,11 @@
     "javascript",
     "jest",
     "babel",
-    "webpack"
+    "webpack",
+    "continuous-integration",
+    "continuous-deployment",
+    "travis-ci",
+    "appveyor"
   ],
   "main": "./src/index.js",
   "license": "ISC",

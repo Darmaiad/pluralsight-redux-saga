@@ -1,4 +1,5 @@
-# Redux Saga (Pluralsight) [![Build Status](https://travis-ci.org/Darmaiad/pluralsight-redux-saga.svg?branch=master)](https://travis-ci.org/Darmaiad/pluralsight-redux-saga)
+# Redux Saga (Pluralsight) [![Build Status](https://travis-ci.org/Darmaiad/pluralsight-redux-saga.svg?branch=master)](https://travis-ci.org/Darmaiad/pluralsight-redux-saga) [![https://ci.appveyor.com/api/projects/status/github/Darmaiad/pluralsight-redux-saga?branch=master&svg=true](https://ci.appveyor.com/api/projects/status/github/Darmaiad/pluralsight-redux-saga?branch=master&svg=true)](https://ci.appveyor.com/api/projects/status/github/Darmaiad/pluralsight-redux-saga?branch=master&svg=true)
+
 A (very) functional shopping cart. The project is based on the [Pluralsight](https://www.pluralsight.com/) course: [Redux Saga](https://app.pluralsight.com/library/courses/redux-saga/table-of-contents) by [Daniel Stern](https://github.com/danielstern).
 
 ## Installation
@@ -15,6 +16,6 @@ This is a shopping cart project, rich in functionality, showcaing the power of R
 
 The instructor included a ready-made separate project, which constituted the back-end. I merged and integrated that project with my own. After that, I rewrote the server to fit my preferences. 
 
-This project provides the option of running it with one of two servers: one for Development or one for Production. Assimilating the back-end to the project has the downside that it cannot be deployed to gh-pages, since it serves static files only. At least the project can be build by Travis-CI.
+This project provides the option of running it with one of two servers: one for Development or one for Production. Two [CI](https://en.wikipedia.org/wiki/Continuous_integration) servers are used: [Travis-CI](https://travis-ci.org/) to test the project in a Linux environment and [AppVeyor](https://ci.appveyor.com), to test in a Windows environment.
 
 As always, there is refactoring (to suit my tastes) and comments in the code.
