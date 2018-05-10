@@ -6,9 +6,6 @@ cache:
     - "node_modules"
 script:
   - npm test
-  - npm run prod
-before_deploy:
-  - cd ./dist
 deploy:
   provider: heroku
   skip-cleanup: true
