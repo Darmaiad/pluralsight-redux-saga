@@ -11,6 +11,7 @@ before_deploy:
   - cd ./dist
 deploy:
   provider: heroku
+  skip-cleanup: true
   api_key:
     secure: $HEROKU_TOKEN
   app: pluralsight-redux-saga
