@@ -46,13 +46,13 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './../dist/index.html'));
 });
 
-// server.listen(wsPort);
+server.listen(wsPort);
 
-// app.listen(port, (err) => {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.info(`Redux Cart App Production Build is listening on port ${port}.`);
-//         // open(`http://${host}:${port}`);
-//     }
-// });
+app.listen(port, (err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.info(`Redux Cart App Production Build is listening on port ${port}.`);
+        // open(`http://${host}:${port}`);
+    }
+});
