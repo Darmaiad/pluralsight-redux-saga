@@ -53,6 +53,6 @@ app.listen(port, (err) => {
         console.log(err);
     } else {
         console.info(`Redux Cart App Production Build is listening on port ${port}.`);
-        open(`http://${host}:${port}`);
+        // open(`http://${host}:${port}`);
     }
 });

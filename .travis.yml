@@ -1,4 +1,18 @@
 language: node_js
 node_js:
-  - "7"
   - "8"
+cache:
+  directories:
+    - "node_modules"
+script:
+  - npm test
+  - npm run prod
+before_deploy:
+  - cd ./dist
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_TOKEN
+  app: pluralsight-redux-saga
+  on:
+    repo: Darmaiad/pluralsight-redux-saga
