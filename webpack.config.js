@@ -3,6 +3,7 @@ import config from './config';
 
 const GLOBALS = {
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    'process.env.PORT': JSON.stringify(process.env.PORT), 
 };
 
 Object.keys(config).map((key) => {
