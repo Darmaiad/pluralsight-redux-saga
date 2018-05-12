@@ -12,7 +12,6 @@
     "preprod": "npm-run-all clean-dist prod:html",
     "prod": "cross-env NODE_ENV=production babel-node server/build.js",
     "postprod": "cross-env NODE_ENV=production babel-node server/prodServer.js",
-    "postinstall": "npm run prod"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
