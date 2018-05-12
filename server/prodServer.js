@@ -46,7 +46,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './../dist/index.html'));
 });
 
-server.listen(wsPort);
+server.listen(wsPort, host);
 
 app.listen(port, (err) => {
     if (err) {
