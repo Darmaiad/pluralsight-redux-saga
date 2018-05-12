@@ -1,5 +1,5 @@
 import express from 'express';
-import https from 'https';
+import http from 'http';
 import socketIO from 'socket.io';
 import path from 'path';
 import compression from 'compression';
@@ -12,7 +12,7 @@ import config from './../config';
 
 const port = process.env.PORT || config.port;
 const host = config.host;
-const wsPort = config.wsPort;
+// const wsPort = config.wsPort;
 
 const app = express();
 
@@ -32,7 +32,7 @@ app.use("/cart", Router.cart);
 app.use("/card", Router.card);
 
 // Websocket
-const server = https.createServer(app);
+const server = http.createServer(app);
 const io = socketIO(server);
 io.on('connection', (connection) => {
     let supportAvailable = false;
@@ -46,13 +46,13 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './../dist/index.html'));
 });
 
-server.listen(wsPort, host);
+// server.listen(wsPort, host);
 
-app.listen(port, (err) => {
+server.listen(port, (err) => {
     if (err) {
         console.log(err);
     } else {
         console.info(`Redux Cart App Production Build is listening on port ${port}.`);
-        // open(`https://${host}:${port}`);
+        open(`http://${host}:${port}`);
     }
 });
