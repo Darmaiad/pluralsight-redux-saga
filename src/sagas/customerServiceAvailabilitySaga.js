@@ -6,7 +6,7 @@ import { setCustomerServiceAvailability } from './../actions';
 
 export function* customerServiceAvailabilitySaga() {
     const port = process.env.PORT || 9998;
-    const socket = io(`http://${host}:${port}/`);
+    const socket = io(`//${host}:${port}/`);
 
     // Event chanels take one argument which is a function that takes an emit argument.
     // When you call emit it causes the channel itself to emit an action
