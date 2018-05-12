@@ -10,7 +10,7 @@ import config from './../config';
 
 /* eslint-disable no-console */
 
-const port = config.port;
+const port = process.env.PORT || config.port;
 const host = config.host;
 const wsPort = config.wsPort;
 
