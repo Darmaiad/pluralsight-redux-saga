@@ -7,16 +7,14 @@ import socketIO from 'socket.io';
 import path from 'path';
 import open from 'open';
 
-import appConfig from './../config';
+import { port, host } from './../config';
 import webpackConfig from './../webpack.config.dev';
 import * as Router from './routes';
 
 /* eslint-disable no-console */
 
 const app = express();
-const port = appConfig.port;
-const wsPort = appConfig.wsPort;
-const host = appConfig.host;
+
 const compiler = webpack(webpackConfig);
 
 app.use(webpackDevMiddleware(compiler, {
@@ -43,8 +41,9 @@ app.use("/", Router.misc);
 app.use("/cart", Router.cart);
 app.use("/card", Router.card);
 
-// Websocket
 const server = http.createServer(app);
+
+// Websocket
 const io = socketIO(server);
 io.on('connection', (connection) => {
   let supportAvailable = false;
@@ -58,9 +57,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './../public/index.html'));
 });
 
-server.listen(wsPort);
-
-app.listen(port, (err) => {
+server.listen(port, (err) => {
   if (err) {
     console.log(err);
   } else {
