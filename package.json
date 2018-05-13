@@ -98,10 +98,12 @@
     "continuous-integration",
     "continuous-deployment",
     "travis-ci",
+    "heroku",
     "appveyor"
   ],
   "main": "./src/index.js",
   "license": "ISC",
+  "homepage": "https://pluralsight-redux-saga.herokuapp.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/Darmaiad/pluralsight-redux-saga.git"

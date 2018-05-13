@@ -3,7 +3,7 @@ import config from './config';
 
 const GLOBALS = {
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-    'process.env.PORT': JSON.stringify(process.env.PORT), 
+    'process.env.PORT': JSON.stringify(process.env.PORT), // Heroku will set it
 };
 
 Object.keys(config).map((key) => {
