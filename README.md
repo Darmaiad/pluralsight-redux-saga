@@ -12,8 +12,8 @@ A (very) functional shopping cart. You can view it [here](https://pluralsight-re
   * Run `npm test` to run the tests.
 
 ## Description
-This is a shopping cart project, rich in functionality, showcasing the power of Redux Saga. I developed the project in my own devepment environment. Coding was done along with the course's instructor, while refactoring, and writing comments where deemed necessary.
+This is a shopping cart project, rich in functionality, showcasing the power of [Redux Saga](https://github.com/redux-saga/redux-saga). I developed the project in mw own concoction of a JS development environment. Coding was done along with the course's instructor.Additionally, I refactored and commented what it was deemed necessary.
 
-The course's instructor included a ready-made separate project, which constituted the back-end. I merged and integrated that project with my own. After that, I rewrote the back-end to fit my preferences. 
+The course's instructor included a ready-made [separate project](https://github.com/danielstern/redux-saga-shopping-cart-server), which constituted the back-end. After I merged and integrated that project with my own, I rewrote it to fit my preferences. 
 
 This project provides the option of running it with one of two servers: one for Development or one for Production. Two [CI](https://en.wikipedia.org/wiki/Continuous_integration) servers are used: [Travis-CI](https://travis-ci.org/) to test the project in a Linux environment and [AppVeyor](https://ci.appveyor.com), to test in a Windows environment. If the [Travis-CI](https://travis-ci.org/) build is successful, it will attempt to deploy the app to [Heroku](https://www.heroku.com/), which will make it available [here](https://pluralsight-redux-saga.herokuapp.com/).
